@@ -110,3 +110,34 @@ class KthLargest:
         if len(self.heap) > self.localvar:
             heapq.heappop(self.heap)
         return self.heap[0]
+
+################### BINARY SEARCH ###################
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        l, r = 0, len(nums) - 1
+        while l <= r:
+            mid = (l + r) // 2
+            if nums[mid] == target:
+                return mid
+            elif nums[mid] < target:
+                l = mid + 1
+            else:
+                r = mid - 1
+        return -1
+
+################### TREES ###################
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        # base case
+        if not root:
+            return None
+        root.left, root.right = root.right, root.left
+        self.invertTree(root.left)
+        self.invertTree(root.right)
+        return root
+
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
